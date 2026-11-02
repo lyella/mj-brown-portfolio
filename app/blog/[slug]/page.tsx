@@ -26,7 +26,7 @@ export default async function BlogPostPage({ params }: Params) {
   const { content } = await compileMDX({ source: post.content });
   const others = getAllPosts().filter((p) => p.slug !== post.slug).slice(0, 2);
 
-  const shareUrl = `https://mj-brown.vercel.app/blog/${post.slug}`; // update after the custom domain goes live
+  const shareUrl = `https://mjbrown.vercel.app/blog/${post.slug}`; // update after the custom domain goes live
 
   return (
     <article className="container-page py-16 md:py-24">

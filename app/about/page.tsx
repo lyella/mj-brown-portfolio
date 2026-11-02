@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
-import { PlaceholderImage } from "@/components/placeholder-image";
+import { PhotoImage } from "@/components/photo-image";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -35,7 +35,11 @@ export default function AboutPage() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <PlaceholderImage label="MJ Brown — behind the scenes" />
+          <PhotoImage
+            src="/images/about-portrait.jpg"
+            alt="MJ Brown — behind the scenes"
+            sizes="(max-width: 768px) 100vw, 360px"
+          />
           <p className="mt-3 text-xs uppercase tracking-widest text-muted">
             Always learning · Always creating
           </p>

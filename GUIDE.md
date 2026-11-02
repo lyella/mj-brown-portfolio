@@ -119,11 +119,13 @@ Your **Markdown** here. Headings, lists, quotes, links…
 3. `app/blog/page.tsx` lists all posts.
 4. `app/blog/[slug]/page.tsx` compiles the MDX with **next-mdx-remote** and renders it with the `prose-post` styles, plus Twitter/Facebook share links ("SHARE ON" from the design).
 
-### 3.7 Images — placeholders today, photos tomorrow
+### 3.7 Images — real photos, optimized
 
-Until real photos are ready, `components/placeholder-image.tsx` renders a **deterministic gradient** (the same title always gets the same tint) with the item's name. Each placeholder is an `<img>`-shaped box with `role="img"` so it's accessible.
+Photos live in `public/images/` (exported from Figma). `components/photo-image.tsx` wraps Next's `<Image>`: it crops to any aspect ratio (`object-cover`), generates responsive WebP sizes per device, and adds a subtle zoom on hover. Items with an image render `PhotoImage`; items without fall back to `PlaceholderImage` (a deterministic gradient).
 
-To go live with photos: drop files into `public/images/`, then swap `<PlaceholderImage …/>` for Next's `<Image src="/images/x.jpg" …/>` — it auto-optimizes sizes for phones vs desktop.
+- Hero/home and About photos: `/images/hero-portrait.jpg`, `/images/about-portrait.jpg`
+- Portfolio photos are set per item in `lib/data/portfolio.ts` (`images` array — first one is the cover)
+- To swap a photo: replace the file in `public/images/` (keep the same name), or point `images[0]` at a new file.
 
 ### 3.8 SEO & metadata
 

@@ -1,10 +1,19 @@
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
+import { PhotoImage } from "@/components/photo-image";
 import { PlaceholderImage } from "@/components/placeholder-image";
 import { site } from "@/lib/data/site";
 import { portfolioItems } from "@/lib/data/portfolio";
 import { works } from "@/lib/data/works";
 import { getAllPosts } from "@/lib/posts";
+
+/** First image of a portfolio item, or a placeholder when it has none yet. */
+function ItemCover({ item }: { item: (typeof portfolioItems)[number] }) {
+  if (item.images[0]) {
+    return <PhotoImage src={item.images[0]} alt={item.title} />;
+  }
+  return <PlaceholderImage label={item.title} />;
+}
 
 export default function HomePage() {
   const featuredPortfolio = portfolioItems.slice(0, 3);
@@ -38,7 +47,13 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <PlaceholderImage label="MJ Brown — portrait" ratio="aspect-[3/4] w-full md:w-80" />
+        <PhotoImage
+          src="/images/hero-portrait.jpg"
+          alt="MJ Brown — portrait"
+          ratio="aspect-[3/4] w-full md:w-80"
+          sizes="(max-width: 768px) 100vw, 320px"
+          priority
+        />
       </section>
 
       {/* About teaser */}
@@ -72,7 +87,7 @@ export default function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPortfolio.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.1}>
-              <PlaceholderImage label={item.title} />
+              <ItemCover item={item} />
               <p className="mt-3 text-xs uppercase tracking-widest text-muted">
                 {item.category} · {item.year}
               </p>

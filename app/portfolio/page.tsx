@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
+import { PhotoImage } from "@/components/photo-image";
 import { PlaceholderImage } from "@/components/placeholder-image";
 import { portfolioCategories, itemsByCategory } from "@/lib/data/portfolio";
 import { site } from "@/lib/data/site";
@@ -44,7 +45,11 @@ export default function PortfolioPage() {
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((item, index) => (
                 <Reveal key={item.title} delay={index * 0.1}>
-                  <PlaceholderImage label={item.title} />
+                  {item.images[0] ? (
+                    <PhotoImage src={item.images[0]} alt={item.title} />
+                  ) : (
+                    <PlaceholderImage label={item.title} />
+                  )}
                   <p className="mt-3 text-xs uppercase tracking-widest text-muted">
                     {item.year}
                   </p>

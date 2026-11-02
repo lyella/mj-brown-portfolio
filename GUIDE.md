@@ -199,4 +199,10 @@ The data files (`lib/data/*`) were designed as the seam: swap their internals fo
 
 ---
 
+## 9. Decision records
+
+The **why** behind every major choice (framework, hosting, no-database, Formspree, CI, …) is captured in [docs/adr/](./docs/adr/README.md) as Architecture Decision Records — each with its context, trade-offs, and escape hatch. Read those before changing a foundational choice.
+
+---
+
 *Built with Next.js 15 · TypeScript · Tailwind CSS v4 · framer-motion · MDX — deployed on Vercel.*
